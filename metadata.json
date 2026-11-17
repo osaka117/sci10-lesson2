@@ -1,0 +1,6 @@
+{
+  "name": "Retro Impulse & Momentum Math Reviewer",
+  "description": "Vintage 1990s computer-style educational math reviewer for Grade 10 Impulse and Momentum with Practice, Mock Test, and Formula Reference.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

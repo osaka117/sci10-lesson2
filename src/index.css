@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@layer base {
+  :root {
+    --retro-navy-dark: #080e18;
+    --retro-navy-base: #0f1a2a;
+    --retro-navy-panel: #142236;
+    --retro-navy-border: #233b5c;
+    --retro-cyan: #00e5ff;
+    --retro-amber: #ffb703;
+    --retro-green: #00e676;
+    --retro-red: #ff5252;
+    --retro-text-main: #e2eaf2;
+    --retro-text-muted: #8aa3bf;
+  }
+
+  body {
+    background-color: var(--retro-navy-dark);
+    color: var(--retro-text-main);
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+}
+
+/* Retro Window & Bevel Utilities */
+.retro-window {
+  background-color: #111e31;
+  border: 2px solid #284469;
+  box-shadow: 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.15),
+    inset -1px -1px 0px rgba(0, 0, 0, 0.4),
+    3px 3px 0px #05090f;
+}
+
+.retro-window-inner {
+  background-color: #0b1422;
+  border: 2px solid #1a2c44;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.retro-btn {
+  background-color: #172942;
+  border-top: 2px solid #385d8a;
+  border-left: 2px solid #385d8a;
+  border-right: 2px solid #080e18;
+  border-bottom: 2px solid #080e18;
+  color: #e2eaf2;
+  transition: background-color 0.1s ease;
+  user-select: none;
+}
+
+.retro-btn:hover:not(:disabled) {
+  background-color: #1f3758;
+}
+
+.retro-btn:active:not(:disabled),
+.retro-btn-active {
+  background-color: #0f1c2e;
+  border-top: 2px solid #080e18;
+  border-left: 2px solid #080e18;
+  border-right: 2px solid #385d8a;
+  border-bottom: 2px solid #385d8a;
+  color: #00e5ff;
+}
+
+.retro-btn-primary {
+  background-color: #006b7d;
+  border-top: 2px solid #00c4db;
+  border-left: 2px solid #00c4db;
+  border-right: 2px solid #00363f;
+  border-bottom: 2px solid #00363f;
+  color: #ffffff;
+}
+
+.retro-btn-primary:hover:not(:disabled) {
+  background-color: #008196;
+}
+
+.retro-btn-primary:active:not(:disabled) {
+  background-color: #004d59;
+  border-top: 2px solid #00363f;
+  border-left: 2px solid #00363f;
+  border-right: 2px solid #00c4db;
+  border-bottom: 2px solid #00c4db;
+}
+
+.retro-btn:disabled,
+.retro-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.retro-terminal-screen {
+  background: radial-gradient(circle at 50% 50%, #0d1929 0%, #080e17 100%);
+  position: relative;
+}
+
+.retro-crt-lines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* KaTeX custom sizing to prevent overflow and ensure retro aesthetic */
+.katex-display {
+  margin: 0.75em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35rem 0.5rem;
+}
+
+.katex {
+  font-size: 1.05em !important;
+  text-rendering: geometricPrecision;
+}
