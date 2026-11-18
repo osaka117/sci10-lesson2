@@ -4,6 +4,7 @@ import { TOPICS, DIFFICULTY_LEVELS, getTopicName, getDifficultyInfo } from '../d
 import { generateMockTestQuestions } from '../data/questionGenerator';
 import { MathView, MathText } from '../utils/mathRenderer';
 import { retroAudio } from '../utils/retroAudio';
+import { GufsaSolutionPanel } from './GufsaSolutionPanel';
 import { 
   Play, 
   ArrowLeft, 
@@ -710,35 +711,43 @@ export const MockTestMode: React.FC = () => {
               })}
             </div>
 
-            {/* Full Step-by-Step Solution */}
+            {/* Full Step-by-Step Solution (GUFSA when wrong or skipped) */}
             <div className="mt-4 pt-3 border-t border-[#1d314d] space-y-3">
-              <div className="p-3 bg-[#0f1b2c] border border-[#233b5c] text-xs font-mono">
-                <span className="text-[#ffb703] font-bold block mb-1">
-                  FORMULA APPLIED:
-                </span>
-                <div className="text-[#00e5ff] text-sm font-bold mb-1">
-                  <MathView math={activeReviewQ.formulaUsed} />
-                </div>
-                <p className="text-[#8aa3bf] font-sans">
-                  {activeReviewQ.formulaReason}
-                </p>
-              </div>
-
-              <div className="space-y-1.5">
-                {activeReviewQ.steps.map((st, i) => (
-                  <div key={i} className="p-2.5 bg-[#111e31] border border-[#1b2f48] text-xs font-mono">
-                    <span className="text-[#00e5ff] font-bold block mb-0.5">{st.label}</span>
-                    <div className="text-[#e2eaf2]">
-                      <MathText text={st.detail} />
+              {!isQCorrect ? (
+                <GufsaSolutionPanel question={activeReviewQ} />
+              ) : (
+                <>
+                  <div className="p-3 bg-[#0f1b2c] border border-[#233b5c] text-xs font-mono">
+                    <span className="text-[#ffb703] font-bold block mb-1">
+                      FORMULA APPLIED:
+                    </span>
+                    <div className="text-[#00e5ff] text-sm font-bold mb-1">
+                      <MathView math={activeReviewQ.formulaUsed} />
                     </div>
+                    <p className="text-[#8aa3bf] font-sans">
+                      <MathText text={activeReviewQ.formulaReason} />
+                    </p>
                   </div>
-                ))}
-              </div>
 
-              <div className="p-2.5 bg-[#142338] border border-[#2c4c78] text-xs font-mono">
-                <span className="text-[#ffb703] font-bold block mb-0.5">GRADE 10 TAKEAWAY:</span>
-                <p className="text-[#c8d9ea] font-sans">{activeReviewQ.takeaway}</p>
-              </div>
+                  <div className="space-y-1.5">
+                    {activeReviewQ.steps.map((st, i) => (
+                      <div key={i} className="p-2.5 bg-[#111e31] border border-[#1b2f48] text-xs font-mono">
+                        <span className="text-[#00e5ff] font-bold block mb-0.5">{st.label}</span>
+                        <div className="text-[#e2eaf2]">
+                          <MathText text={st.detail} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-2.5 bg-[#142338] border border-[#2c4c78] text-xs font-mono">
+                    <span className="text-[#ffb703] font-bold block mb-0.5">GRADE 10 TAKEAWAY:</span>
+                    <p className="text-[#c8d9ea] font-sans">
+                      <MathText text={activeReviewQ.takeaway} />
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Prev/Next Review Buttons */}

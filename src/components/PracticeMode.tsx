@@ -4,6 +4,7 @@ import { TOPICS, DIFFICULTY_LEVELS, getTopicName, getDifficultyInfo } from '../d
 import { generateQuestion } from '../data/questionGenerator';
 import { MathView, MathText } from '../utils/mathRenderer';
 import { retroAudio } from '../utils/retroAudio';
+import { GufsaSolutionPanel } from './GufsaSolutionPanel';
 import { Check, X, ArrowRight, RotateCcw, Shuffle, Sparkles, Filter } from 'lucide-react';
 
 export const PracticeMode: React.FC = () => {
@@ -20,6 +21,10 @@ export const PracticeMode: React.FC = () => {
   const [randomDifficulty, setRandomDifficulty] = useState<boolean>(true);
   const [filtersOpen, setFiltersOpen] = useState<boolean>(true);
 
+  // Sequential cycle indices when randomTopic / randomDifficulty are disabled
+  const [topicCycleIdx, setTopicCycleIdx] = useState<number>(0);
+  const [diffCycleIdx, setDiffCycleIdx] = useState<number>(0);
+
   // Current Question & Answer State
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -31,30 +36,56 @@ export const PracticeMode: React.FC = () => {
     correct: 0,
   });
 
-  // Load question helper
-  const loadNextQuestion = () => {
-    retroAudio.playClick();
+  // Load question helper strictly respecting selectedTopics & selectedDifficulties
+  const loadNextQuestion = (
+    topicsOverride?: TopicId[],
+    difficultiesOverride?: DifficultyLevel[],
+    silent: boolean = false
+  ) => {
+    if (!silent) {
+      retroAudio.playClick();
+    }
     setSelectedOptionId(null);
     setHasSubmitted(false);
 
-    let topicFilter: TopicId[] | undefined = selectedTopics;
-    let difficultyFilter: DifficultyLevel[] | undefined = selectedDifficulties;
+    const activeTopics = topicsOverride ?? selectedTopics;
+    const activeDifficulties = difficultiesOverride ?? selectedDifficulties;
 
-    if (randomTopic) {
-      topicFilter = undefined;
-    }
-    if (randomDifficulty) {
-      difficultyFilter = undefined;
+    let preferredTopic: TopicId | undefined;
+    if (!randomTopic && activeTopics.length > 0) {
+      preferredTopic = activeTopics[topicCycleIdx % activeTopics.length];
+      setTopicCycleIdx((prev) => prev + 1);
     }
 
-    const q = generateQuestion(topicFilter, difficultyFilter);
+    let preferredDiff: DifficultyLevel | undefined;
+    if (!randomDifficulty && activeDifficulties.length > 0) {
+      preferredDiff = activeDifficulties[diffCycleIdx % activeDifficulties.length];
+      setDiffCycleIdx((prev) => prev + 1);
+    }
+
+    const q = generateQuestion(
+      activeTopics,
+      activeDifficulties,
+      preferredTopic,
+      preferredDiff
+    );
     setCurrentQuestion(q);
   };
 
   // Initial load
   useEffect(() => {
-    loadNextQuestion();
+    loadNextQuestion(undefined, undefined, true);
   }, []);
+
+  // Immediately replace unanswered question if user deselected its topic or difficulty
+  useEffect(() => {
+    if (!currentQuestion || hasSubmitted) return;
+    const topicMatches = selectedTopics.includes(currentQuestion.topicId);
+    const diffMatches = selectedDifficulties.includes(currentQuestion.difficulty);
+    if (!topicMatches || !diffMatches) {
+      loadNextQuestion(selectedTopics, selectedDifficulties, true);
+    }
+  }, [selectedTopics, selectedDifficulties]);
 
   // Answer selection handler
   const handleSelectOption = (optionId: string) => {
@@ -159,16 +190,32 @@ export const PracticeMode: React.FC = () => {
           <div className="pt-3 space-y-3 text-xs font-mono">
             {/* Topic multi-select */}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[#8aa3bf] font-bold">SELECT TOPICS:</span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <div className="flex items-center gap-3">
+                  <span className="text-[#8aa3bf] font-bold">SELECT TOPICS ({selectedTopics.length}/5):</span>
+                  {selectedTopics.length < TOPICS.length && (
+                    <button
+                      onClick={() => {
+                        retroAudio.playClick();
+                        setSelectedTopics(TOPICS.map((t) => t.id));
+                      }}
+                      className="text-[11px] text-[#00e5ff] underline hover:text-white"
+                    >
+                      Select All
+                    </button>
+                  )}
+                </div>
                 <label className="flex items-center gap-1.5 text-[#c0d4e8] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={randomTopic}
-                    onChange={(e) => setRandomTopic(e.target.checked)}
+                    onChange={(e) => {
+                      retroAudio.playClick();
+                      setRandomTopic(e.target.checked);
+                    }}
                     className="accent-[#00e5ff]"
                   />
-                  <span>Randomize Topic Selection</span>
+                  <span>Randomize Selected Topics</span>
                 </label>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -193,16 +240,32 @@ export const PracticeMode: React.FC = () => {
 
             {/* Difficulty multi-select */}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[#8aa3bf] font-bold">DIFFICULTY LEVELS:</span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <div className="flex items-center gap-3">
+                  <span className="text-[#8aa3bf] font-bold">DIFFICULTY LEVELS ({selectedDifficulties.length}/5):</span>
+                  {selectedDifficulties.length < DIFFICULTY_LEVELS.length && (
+                    <button
+                      onClick={() => {
+                        retroAudio.playClick();
+                        setSelectedDifficulties(DIFFICULTY_LEVELS.map((d) => d.level));
+                      }}
+                      className="text-[11px] text-[#00e5ff] underline hover:text-white"
+                    >
+                      Select All
+                    </button>
+                  )}
+                </div>
                 <label className="flex items-center gap-1.5 text-[#c0d4e8] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={randomDifficulty}
-                    onChange={(e) => setRandomDifficulty(e.target.checked)}
+                    onChange={(e) => {
+                      retroAudio.playClick();
+                      setRandomDifficulty(e.target.checked);
+                    }}
                     className="accent-[#00e5ff]"
                   />
-                  <span>Randomize Difficulty Selection</span>
+                  <span>Randomize Selected Difficulties</span>
                 </label>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -229,10 +292,10 @@ export const PracticeMode: React.FC = () => {
             {/* Quick Action Button for Filters */}
             <div className="pt-1 flex items-center justify-between">
               <span className="text-[11px] text-[#5d738d]">
-                Filters automatically apply to each new question generated.
+                Only questions from your selected topics and levels will appear.
               </span>
               <button
-                onClick={loadNextQuestion}
+                onClick={() => loadNextQuestion()}
                 className="retro-btn-primary px-3 py-1 text-xs font-bold flex items-center gap-1.5"
               >
                 <Shuffle className="w-3.5 h-3.5" />
@@ -362,7 +425,7 @@ export const PracticeMode: React.FC = () => {
                       ✕
                     </div>
                     <span className="font-bold text-sm md:text-base text-[#ff5252] font-mono">
-                      INCORRECT. REVIEW THE STEP-BY-STEP SOLUTION BELOW.
+                      INCORRECT. REVIEW THE GUFSA SOLUTION BELOW.
                     </span>
                   </>
                 )}
@@ -373,48 +436,54 @@ export const PracticeMode: React.FC = () => {
               </div>
             </div>
 
-            {/* Formula Used & Justification */}
-            <div className="p-3 bg-[#0f1b2c] border border-[#233b5c] space-y-1 text-xs md:text-sm font-mono">
-              <div className="text-[#ffb703] font-bold">
-                PHYSICS FORMULA USED:
-              </div>
-              <div className="text-lg text-[#00e5ff] font-bold">
-                <MathView math={currentQuestion.formulaUsed} />
-              </div>
-              <p className="text-[#a9c2db] font-sans text-xs pt-1">
-                {currentQuestion.formulaReason}
-              </p>
-            </div>
-
-            {/* Steps Breakdown */}
-            <div className="space-y-2">
-              <div className="text-xs font-mono text-[#8aa3bf] uppercase tracking-wider">
-                Step-by-Step Solution:
-              </div>
-              {currentQuestion.steps.map((step, idx) => (
-                <div
-                  key={idx}
-                  className="p-3 bg-[#111e31] border border-[#1d3350] text-xs md:text-sm font-mono"
-                >
-                  <span className="text-[#00e5ff] font-bold block mb-1">
-                    {step.label}
-                  </span>
-                  <div className="text-[#e2eaf2]">
-                    <MathText text={step.detail} />
+            {!isCorrect ? (
+              <GufsaSolutionPanel question={currentQuestion} />
+            ) : (
+              <>
+                {/* Formula Used & Justification */}
+                <div className="p-3 bg-[#0f1b2c] border border-[#233b5c] space-y-1 text-xs md:text-sm font-mono">
+                  <div className="text-[#ffb703] font-bold">
+                    PHYSICS FORMULA USED:
                   </div>
+                  <div className="text-lg text-[#00e5ff] font-bold">
+                    <MathView math={currentQuestion.formulaUsed} />
+                  </div>
+                  <p className="text-[#a9c2db] font-sans text-xs pt-1">
+                    <MathText text={currentQuestion.formulaReason} />
+                  </p>
                 </div>
-              ))}
-            </div>
 
-            {/* Key Grade 10 Takeaway */}
-            <div className="p-3 bg-[#142338] border border-[#2c4c78] text-xs md:text-sm font-mono">
-              <span className="text-[#ffb703] font-bold block mb-1">
-                KEY GRADE 10 TAKEAWAY:
-              </span>
-              <p className="text-[#c8d9ea] font-sans">
-                {currentQuestion.takeaway}
-              </p>
-            </div>
+                {/* Steps Breakdown */}
+                <div className="space-y-2">
+                  <div className="text-xs font-mono text-[#8aa3bf] uppercase tracking-wider">
+                    Step-by-Step Solution:
+                  </div>
+                  {currentQuestion.steps.map((step, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 bg-[#111e31] border border-[#1d3350] text-xs md:text-sm font-mono"
+                    >
+                      <span className="text-[#00e5ff] font-bold block mb-1">
+                        {step.label}
+                      </span>
+                      <div className="text-[#e2eaf2]">
+                        <MathText text={step.detail} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Key Grade 10 Takeaway */}
+                <div className="p-3 bg-[#142338] border border-[#2c4c78] text-xs md:text-sm font-mono">
+                  <span className="text-[#ffb703] font-bold block mb-1">
+                    KEY GRADE 10 TAKEAWAY:
+                  </span>
+                  <p className="text-[#c8d9ea] font-sans">
+                    <MathText text={currentQuestion.takeaway} />
+                  </p>
+                </div>
+              </>
+            )}
 
             {/* Navigation / Next / Retry Actions */}
             <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
@@ -427,7 +496,7 @@ export const PracticeMode: React.FC = () => {
               </button>
 
               <button
-                onClick={loadNextQuestion}
+                onClick={() => loadNextQuestion()}
                 className="retro-btn-primary px-6 py-2 text-xs font-bold flex items-center gap-2"
               >
                 <span>Next Question</span>

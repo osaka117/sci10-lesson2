@@ -98,6 +98,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
               detail: 'Units of mass = $\\text{kg}$; Units of velocity = $\\text{m/s}$. Multiplying gives $\\text{kg}\\cdot\\text{m/s}$. (Equivalent to $\\text{N}\\cdot\\text{s}$).',
             },
           ],
+          gufsa: {
+            given: [
+              'Mass ($m$) is measured in kilograms ($\\text{kg}$)',
+              'Velocity ($v$) is measured in meters per second ($\\text{m/s}$)',
+            ],
+            unknown: 'Standard SI unit of linear momentum ($p$)',
+            formula: '$p = mv$',
+            solution: [
+              'Substitute the SI units of mass and velocity: $\\text{unit of } p = (\\text{kg}) \\times (\\text{m/s})$',
+              'Multiply the units together: $\\text{kg}\\cdot\\text{m/s}$',
+            ],
+            answer: '$\\text{kg}\\cdot\\text{m/s}$',
+          },
           takeaway: 'Momentum is measured in kilograms times meters per second ($\\text{kg}\\cdot\\text{m/s}$). It has identical dimensions to impulse ($\\text{N}\\cdot\\text{s}$).',
           isConceptual: true,
         };
@@ -129,6 +142,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
               detail: 'Since velocity specifies direction (e.g. forward vs backward, east vs west), momentum $\\vec{p}$ shares that exact direction.',
             },
           ],
+          gufsa: {
+            given: [
+              'Mass ($m$) is a scalar quantity (magnitude only)',
+              'Velocity ($\\vec{v}$) is a vector quantity (magnitude and direction)',
+            ],
+            unknown: 'Whether linear momentum ($\\vec{p}$) is a vector or scalar quantity',
+            formula: '$\\vec{p} = m\\vec{v}$',
+            solution: [
+              'Multiplying a scalar ($m$) by a vector ($\\vec{v}$) yields a vector pointing in the same direction as $\\vec{v}$.',
+              'Therefore, momentum depends on both mass and velocity, and carries both magnitude and direction.',
+            ],
+            answer: 'Momentum is a vector quantity having both magnitude and direction.',
+          },
           takeaway: 'Because velocity is a vector, momentum is also a vector! Moving in reverse means negative momentum.',
           isConceptual: true,
         };
@@ -179,6 +205,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$p = ${p}\\text{ kg}\\cdot\\text{m/s}$`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${mass}\\text{ kg}$`,
+            `$v = ${velocity}\\text{ m/s}$`,
+          ],
+          unknown: '$p = ?\\text{ (kg}\\cdot\\text{m/s)}$',
+          formula: '$p = mv$',
+          solution: [
+            `$p = (${mass}\\text{ kg})(${velocity}\\text{ m/s})$`,
+            `$p = ${p}\\text{ kg}\\cdot\\text{m/s}$`,
+          ],
+          answer: `$p = ${p}\\text{ kg}\\cdot\\text{m/s}$`,
+        },
         takeaway: 'Always verify standard units: mass in kilograms (kg) and velocity in meters per second (m/s).',
         isConceptual: false,
       };
@@ -229,6 +268,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$p = (${obj.mass}\\text{ kg})(${obj.velocity}\\text{ m/s}) = ${p}\\text{ kg}\\cdot\\text{m/s}$.`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${obj.mass}\\text{ kg}$`,
+            `$v = ${obj.velocity}\\text{ m/s}$`,
+          ],
+          unknown: '$p = ?\\text{ (kg}\\cdot\\text{m/s)}$',
+          formula: '$p = mv$',
+          solution: [
+            `$p = (${obj.mass}\\text{ kg})(${obj.velocity}\\text{ m/s})$`,
+            `$p = ${p}\\text{ kg}\\cdot\\text{m/s}$`,
+          ],
+          answer: `$p = ${p}\\text{ kg}\\cdot\\text{m/s}$`,
+        },
         takeaway: 'Even moderate speeds yield substantial momentum when the mass is large.',
         isConceptual: false,
       };
@@ -286,6 +338,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Since $10 = 10$, both objects have equal momentum magnitude.',
           },
         ],
+        gufsa: {
+          given: [
+            'Object A: $m_A = 0.5\\text{ kg}$, $v_A = 20\\text{ m/s}$',
+            'Object B: $m_B = 10\\text{ kg}$, $v_B = 1.0\\text{ m/s}$',
+          ],
+          unknown: 'Comparison between $p_A$ and $p_B$',
+          formula: '$p = mv$',
+          solution: [
+            '$p_A = (0.5\\text{ kg})(20\\text{ m/s}) = 10\\text{ kg}\\cdot\\text{m/s}$',
+            '$p_B = (10\\text{ kg})(1.0\\text{ m/s}) = 10\\text{ kg}\\cdot\\text{m/s}$',
+            'Compare: $10\\text{ kg}\\cdot\\text{m/s} = 10\\text{ kg}\\cdot\\text{m/s}$',
+          ],
+          answer: 'Both objects possess the exact same momentum magnitude ($10\\text{ kg}\\cdot\\text{m/s}$).',
+        },
         takeaway: 'A heavier object does not automatically have greater momentum; high speed can compensate for small mass!',
         isConceptual: true,
       };
@@ -335,6 +401,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$m = ${m}\\text{ kg}$`,
           },
         ],
+        gufsa: {
+          given: [
+            `$p = ${p}\\text{ kg}\\cdot\\text{m/s}$`,
+            `$v = ${v}\\text{ m/s}$`,
+          ],
+          unknown: '$m = ?\\text{ (kg)}$',
+          formula: '$p = mv \\implies m = \\frac{p}{v}$',
+          solution: [
+            `$m = \\frac{${p}\\text{ kg}\\cdot\\text{m/s}}{${v}\\text{ m/s}}$`,
+            `$m = ${m}\\text{ kg}$`,
+          ],
+          answer: `$m = ${m}\\text{ kg}$`,
+        },
         takeaway: 'Formula manipulation is a vital Grade 10 skill: $m = \\frac{p}{v}$ and $v = \\frac{p}{m}$.',
         isConceptual: false,
       };
@@ -380,6 +459,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Units of force (N) $\\times$ Units of time (s) = $\\text{N}\\cdot\\text{s}$. (Note: $1\\text{ N}\\cdot\\text{s} = 1\\text{ kg}\\cdot\\text{m/s}$).',
           },
         ],
+        gufsa: {
+          given: [
+            'Force ($F$) is measured in Newtons ($\\text{N}$)',
+            'Time interval ($\\Delta t$) is measured in seconds ($\\text{s}$)',
+          ],
+          unknown: 'Standard SI unit of impulse ($J$)',
+          formula: '$J = F\\Delta t$',
+          solution: [
+            'Substitute SI units: $\\text{unit of } J = (\\text{N}) \\times (\\text{s})$',
+            'Multiply the units together: $\\text{N}\\cdot\\text{s}$',
+          ],
+          answer: '$\\text{N}\\cdot\\text{s}$ (Newton-seconds)',
+        },
         takeaway: 'Impulse is measured in Newton-seconds ($\\text{N}\\cdot\\text{s}$), which is physically equivalent to $\\text{kg}\\cdot\\text{m/s}$.',
         isConceptual: true,
       };
@@ -429,6 +521,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$J = ${J}\\text{ N}\\cdot\\text{s}$`,
           },
         ],
+        gufsa: {
+          given: [
+            `$F = ${force}\\text{ N}$`,
+            `$\\Delta t = ${time}\\text{ s}$`,
+          ],
+          unknown: '$J = ?\\text{ (N}\\cdot\\text{s)}$',
+          formula: '$J = F\\Delta t$',
+          solution: [
+            `$J = (${force}\\text{ N})(${time}\\text{ s})$`,
+            `$J = ${J}\\text{ N}\\cdot\\text{s}$`,
+          ],
+          answer: `$J = ${J}\\text{ N}\\cdot\\text{s}$`,
+        },
         takeaway: 'Impulse measures the cumulative effect of a force exerted over a given duration.',
         isConceptual: false,
       };
@@ -478,6 +583,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$F = ${force}\\text{ N}$`,
           },
         ],
+        gufsa: {
+          given: [
+            `$J = ${impulse}\\text{ N}\\cdot\\text{s}$`,
+            `$\\Delta t = ${time}\\text{ s}$`,
+          ],
+          unknown: '$F = ?\\text{ (N)}$',
+          formula: '$J = F\\Delta t \\implies F = \\frac{J}{\\Delta t}$',
+          solution: [
+            `$F = \\frac{${impulse}\\text{ N}\\cdot\\text{s}}{${time}\\text{ s}}$`,
+            `$F = ${force}\\text{ N}$`,
+          ],
+          answer: `$F = ${force}\\text{ N}$`,
+        },
         takeaway: 'Notice how small contact times (like $0.05\\text{ s}$) produce enormous impact forces for the same impulse!',
         isConceptual: false,
       };
@@ -533,6 +651,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$\\Delta p = ${deltaP}\\text{ kg}\\cdot\\text{m/s}$`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${mass}\\text{ kg}$`,
+            `$v_i = ${vi}\\text{ m/s}$`,
+            `$v_f = ${vf}\\text{ m/s}$`,
+          ],
+          unknown: '$\\Delta p = ?\\text{ (kg}\\cdot\\text{m/s)}$',
+          formula: '$\\Delta p = p_f - p_i = m(v_f - v_i)$',
+          solution: [
+            `$\\Delta p = (${mass}\\text{ kg})(${vf}\\text{ m/s} - ${vi}\\text{ m/s})$`,
+            `$\\Delta p = (${mass}\\text{ kg})(${vf - vi}\\text{ m/s}) = ${deltaP}\\text{ kg}\\cdot\\text{m/s}$`,
+          ],
+          answer: `$\\Delta p = ${deltaP}\\text{ kg}\\cdot\\text{m/s}$`,
+        },
         takeaway: '$\\Delta p$ is positive when an object speeds up in the forward direction.',
         isConceptual: false,
       };
@@ -584,6 +716,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$1\\text{ kg}\\cdot\\text{m/s} = 1\\text{ N}\\cdot\\text{s}$, so $J = ${deltaP}\\text{ N}\\cdot\\text{s}$.`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${mass}\\text{ kg}$`,
+            '$v_i = 0\\text{ m/s}$ (at rest)',
+            `$v_f = ${vf}\\text{ m/s}$`,
+          ],
+          unknown: '$J = ?\\text{ (N}\\cdot\\text{s)}$',
+          formula: '$J = \\Delta p = m(v_f - v_i)$',
+          solution: [
+            `$J = (${mass}\\text{ kg})(${vf}\\text{ m/s} - 0\\text{ m/s})$`,
+            `$J = ${deltaP}\\text{ kg}\\cdot\\text{m/s} = ${deltaP}\\text{ N}\\cdot\\text{s}$`,
+          ],
+          answer: `$J = ${deltaP}\\text{ N}\\cdot\\text{s}$`,
+        },
         takeaway: 'Impulse and change in momentum are numerically identical and share equivalent physical units!',
         isConceptual: false,
       };
@@ -635,6 +781,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$v_f = ${vi} + \\frac{${impulse}}{${mass}} = ${vi} + ${impulse / mass} = ${roundDec(vf, 1)}\\text{ m/s}$`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${mass}\\text{ kg}$`,
+            `$v_i = ${vi}\\text{ m/s}$`,
+            `$J = ${impulse}\\text{ N}\\cdot\\text{s}$`,
+          ],
+          unknown: '$v_f = ?\\text{ (m/s)}$',
+          formula: '$J = m(v_f - v_i) \\implies v_f = v_i + \\frac{J}{m}$',
+          solution: [
+            `$v_f = ${vi}\\text{ m/s} + \\frac{${impulse}\\text{ N}\\cdot\\text{s}}{${mass}\\text{ kg}}$`,
+            `$v_f = ${vi} + ${impulse / mass} = ${roundDec(vf, 1)}\\text{ m/s}$`,
+          ],
+          answer: `$v_f = ${roundDec(vf, 1)}\\text{ m/s}$`,
+        },
         takeaway: 'Impulse divided by mass gives the change in velocity ($\\Delta v = \\frac{J}{m}$). Add that to initial velocity!',
         isConceptual: false,
       };
@@ -668,7 +828,7 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
         options,
         correctAnswerId,
         formulaUsed: 'J = \\Delta p = m(v_f - v_i)',
-        formulaReason: 'Because momentum is a vector, reversing direction requires accounting for the negative sign in final velocity ($v_f = -${speed}\\text{ m/s}$).',
+        formulaReason: `Because momentum is a vector, reversing direction requires accounting for the negative sign in final velocity ($v_f = -${speed}\\text{ m/s}$).`,
         givenValues: [
           { symbol: 'm', value: `${mass}`, unit: 'kg' },
           { symbol: 'v_i', value: `+${speed}`, unit: 'm/s' },
@@ -688,6 +848,21 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `Magnitude of impulse is $|J| = ${magDeltaP}\\text{ N}\\cdot\\text{s}$ directed away from the wall.`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${mass}\\text{ kg}$`,
+            `$v_i = +${speed}\\text{ m/s}$ (toward wall)`,
+            `$v_f = -${speed}\\text{ m/s}$ (rebounding back)`,
+          ],
+          unknown: '$|J| = ?\\text{ (N}\\cdot\\text{s and direction)}$',
+          formula: '$J = \\Delta p = m(v_f - v_i)$',
+          solution: [
+            `$J = (${mass}\\text{ kg})((-${speed}\\text{ m/s}) - (+${speed}\\text{ m/s}))$`,
+            `$J = (${mass})(-${speed * 2}) = -${magDeltaP}\\text{ N}\\cdot\\text{s}$`,
+            `$|J| = ${magDeltaP}\\text{ N}\\cdot\\text{s}$ opposite to incoming direction`,
+          ],
+          answer: `$${magDeltaP}\\text{ N}\\cdot\\text{s}$ opposite to incoming direction`,
+        },
         takeaway: 'Common trap: Students often think $\\Delta p = 0$. Reversing direction doubles the momentum change compared to simply stopping!',
         isConceptual: false,
       };
@@ -742,6 +917,22 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `The negative sign confirms the force opposes motion (backward). Magnitude is $${magForce}\\text{ N}$.`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m = ${mass}\\text{ kg}$`,
+            `$v_i = ${vi}\\text{ m/s}$`,
+            '$v_f = 0\\text{ m/s}$ (complete halt)',
+            `$\\Delta t = ${time}\\text{ s}$`,
+          ],
+          unknown: '$F = ?\\text{ (N and direction)}$',
+          formula: '$F\\Delta t = m(v_f - v_i) \\implies F = \\frac{m(v_f - v_i)}{\\Delta t}$',
+          solution: [
+            `$F = \\frac{(${mass}\\text{ kg})(0 - ${vi}\\text{ m/s})}{${time}\\text{ s}}$`,
+            `$F = \\frac{-${mass * vi}\\text{ kg}\\cdot\\text{m/s}}{${time}\\text{ s}} = ${force}\\text{ N}$`,
+            'The negative sign shows the braking force acts backward.',
+          ],
+          answer: `$${magForce}\\text{ N}$ backward`,
+        },
         takeaway: 'Stopping a fast, massive object in a short duration requires massive braking force.',
         isConceptual: false,
       };
@@ -785,6 +976,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Forces between interacting objects are action-reaction pairs ($F_{12} = -F_{21}$), imparting equal and opposite impulses that cancel.',
           },
         ],
+        gufsa: {
+          given: [
+            'A system of interacting objects (e.g., two colliding carts)',
+            'Net external force acting on the system is zero ($\\sum F_{\\text{ext}} = 0$)',
+          ],
+          unknown: 'Condition required for total linear momentum to remain conserved',
+          formula: '$\\sum p_{\\text{initial}} = \\sum p_{\\text{final}}$',
+          solution: [
+            'During an interaction, internal forces occur in equal and opposite pairs ($F_{12} = -F_{21}$).',
+            'With no net external force ($J_{\\text{ext}} = 0$), total system momentum cannot change.',
+          ],
+          answer: 'Total momentum remains constant if no net external forces act on the system.',
+        },
         takeaway: 'In any closed, isolated system with zero net external force, total momentum before = total momentum after.',
         isConceptual: true,
       };
@@ -840,6 +1044,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `${totalM} v_f = ${totalP} \\implies v_f = \\frac{${totalP}}{${totalM}} = ${vf}\\text{ m/s}$.`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m_1 = ${m1}\\text{ kg}$, $u_1 = ${u1}\\text{ m/s}$`,
+            `$m_2 = ${m2}\\text{ kg}$, $u_2 = 0\\text{ m/s}$ (stationary)`,
+          ],
+          unknown: '$v_f = ?\\text{ (m/s)}$ (combined velocity)',
+          formula: '$m_1 u_1 + m_2 u_2 = (m_1 + m_2)v_f \\implies v_f = \\frac{m_1 u_1 + m_2 u_2}{m_1 + m_2}$',
+          solution: [
+            `$v_f = \\frac{(${m1}\\text{ kg})(${u1}\\text{ m/s}) + (${m2}\\text{ kg})(0\\text{ m/s})}{${m1}\\text{ kg} + ${m2}\\text{ kg}}$`,
+            `$v_f = \\frac{${totalP}}{${totalM}} = ${vf}\\text{ m/s}$`,
+          ],
+          answer: `$v_f = ${vf}\\text{ m/s}$`,
+        },
         takeaway: 'When objects couple together, total mass increases, so common velocity is less than the initial moving cart\'s speed.',
         isConceptual: false,
       };
@@ -905,6 +1122,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$v_f = \\frac{p_{\\text{total}}}{m_1 + m_2} = \\frac{${totalP}}{${totalM}} = ${vf}\\text{ m/s}$ (${dir}).`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m_1 = ${m1}\\text{ kg}$, $u_1 = +${u1}\\text{ m/s}$ (east)`,
+            `$m_2 = ${m2}\\text{ kg}$, $u_2 = -${u2_mag}\\text{ m/s}$ (west)`,
+          ],
+          unknown: '$v_f = ?\\text{ (m/s and direction)}$',
+          formula: '$m_1 u_1 + m_2 u_2 = (m_1 + m_2)v_f \\implies v_f = \\frac{m_1 u_1 + m_2 u_2}{m_1 + m_2}$',
+          solution: [
+            `$p_{\\text{total}} = (${m1})(+${u1}) + (${m2})(-${u2_mag}) = ${p1} + (${p2}) = ${totalP}\\text{ kg}\\cdot\\text{m/s}$`,
+            `$v_f = \\frac{${totalP}\\text{ kg}\\cdot\\text{m/s}}{${m1}\\text{ kg} + ${m2}\\text{ kg}} = \\frac{${totalP}}{${totalM}} = ${vf}\\text{ m/s}$ (${dir})`,
+          ],
+          answer: `$${magVf}\\text{ m/s}$ ${dir}`,
+        },
         takeaway: 'Always assign signs to directions! West, left, and backward are negative.',
         isConceptual: false,
       };
@@ -967,6 +1197,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: '$10 = -2 + 3 v_2 \\implies 12 = 3 v_2 \\implies v_2 = +4\\text{ m/s}$.',
           },
         ],
+        gufsa: {
+          given: [
+            '$m_1 = 2\\text{ kg}$, $u_1 = +5\\text{ m/s}$, $v_1 = -1\\text{ m/s}$',
+            '$m_2 = 3\\text{ kg}$, $u_2 = 0\\text{ m/s}$',
+          ],
+          unknown: '$v_2 = ?\\text{ (m/s)}$ (final velocity of Ball B)',
+          formula: '$m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2$',
+          solution: [
+            '$(2\\text{ kg})(+5\\text{ m/s}) + (3\\text{ kg})(0\\text{ m/s}) = (2\\text{ kg})(-1\\text{ m/s}) + (3\\text{ kg})v_2$',
+            '$10 = -2 + 3 v_2 \\implies 12 = 3 v_2$',
+            '$v_2 = \\frac{12}{3} = +4\\text{ m/s}$',
+          ],
+          answer: '$4\\text{ m/s}$ forward',
+        },
         takeaway: 'Notice how Ball A rebounding backward transfers even more forward momentum to Ball B than if Ball A had simply stopped!',
         isConceptual: false,
       };
@@ -1014,6 +1258,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'A larger denominator $\\Delta t$ creates a drastically smaller average force $F$ on the body.',
           },
         ],
+        gufsa: {
+          given: [
+            'During a collision, the passenger\'s change in momentum $\\Delta p = m(0 - v_i)$ is fixed',
+            'Airbags and crumple zones increase the stopping time interval ($\\Delta t$)',
+          ],
+          unknown: 'How increasing $\\Delta t$ affects the average impact force ($F$)',
+          formula: '$F\\Delta t = \\Delta p \\implies F = \\frac{\\Delta p}{\\Delta t}$',
+          solution: [
+            'Since $\\Delta p$ is constant for a given crash speed, $F$ is inversely proportional to $\\Delta t$.',
+            'A larger stopping time $\\Delta t$ in the denominator produces a much smaller average force $F$.',
+          ],
+          answer: 'They extend the stopping time ($\\Delta t$), thereby reducing the average impact force ($F$).',
+        },
         takeaway: 'Lengthening contact time is the fundamental principle of seatbelts, airbags, gymnastics mats, and catching mitts!',
         isConceptual: true,
       };
@@ -1053,6 +1310,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Since $F = \\frac{J}{\\Delta t}$, extending $\\Delta t$ by "giving" with the hands makes average force $F$ smaller.',
           },
         ],
+        gufsa: {
+          given: [
+            'The ball has a fixed momentum change $\\Delta p = m(0 - v_i)$ when brought to rest',
+            'Pulling hands backward increases the contact time ($\\Delta t$)',
+          ],
+          unknown: 'Why pulling hands backward reduces the impact force on the palms',
+          formula: '$F\\Delta t = \\Delta p \\implies F = \\frac{\\Delta p}{\\Delta t}$',
+          solution: [
+            'The total impulse $J = \\Delta p$ needed to stop the ball stays the same.',
+            'Dividing that fixed $\\Delta p$ by a larger contact time $\\Delta t$ reduces the average force $F$.',
+          ],
+          answer: 'Pulling hands backward lengthens contact time ($\\Delta t$), diminishing the stinging force on the palms.',
+        },
         takeaway: '"Soft hands" increase contact time $\\Delta t$, protecting the fielder from painful high impact forces.',
         isConceptual: true,
       };
@@ -1100,6 +1370,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Since $2mv > mv$, the bouncing object experiences and delivers twice as much impulse!',
           },
         ],
+        gufsa: {
+          given: [
+            'Flowerpot A (stops): mass $m$, $v_i = v$, $v_f = 0$',
+            'Flowerpot B (bounces): mass $m$, $v_i = v$, $v_f = -v$',
+          ],
+          unknown: 'Which flowerpot imparts a greater impulse ($|J_A|$ vs $|J_B|$)',
+          formula: '$J = \\Delta p = m(v_f - v_i)$',
+          solution: [
+            'Flowerpot A: $|J_A| = |m(0 - v)| = mv$',
+            'Flowerpot B: $|J_B| = |m(-v - v)| = |-2mv| = 2mv$',
+            'Compare: $2mv > mv$',
+          ],
+          answer: 'Flowerpot B (which bounces), because reversing direction creates double the momentum change ($|\\Delta p| = 2mv$).',
+        },
         takeaway: 'Bouncing causes a much larger impulse than simply coming to a stop. This is why water wheel Pelton turbines use curved cups to reverse water flow!',
         isConceptual: true,
       };
@@ -1143,6 +1427,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Since $J = m v_f$, a greater impulse directly increases final ball velocity.',
           },
         ],
+        gufsa: {
+          given: [
+            'Player exerts force $F$ on a ball of mass $m$',
+            'Following through increases the contact time interval ($\\Delta t$)',
+          ],
+          unknown: 'Why following through increases impulse ($J$) and launch speed ($v_f$)',
+          formula: '$J = F\\Delta t = m(v_f - v_i)$',
+          solution: [
+            'Increasing $\\Delta t$ directly increases the product $J = F\\Delta t$.',
+            'Because $J = \\Delta p = m\\Delta v$, a larger impulse produces a higher final launch speed $v_f$.',
+          ],
+          answer: 'Following through increases the contact time ($\\Delta t$), maximizing total impulse and ball launch speed.',
+        },
         takeaway: 'Follow-through maximizes the time interval $\\Delta t$, transferring maximum momentum to the ball.',
         isConceptual: true,
       };
@@ -1204,6 +1501,21 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: '$\\frac{360000}{30000} = 12$. The impact force is cut to $\\frac{1}{12}$th of the lethal wall crash!',
           },
         ],
+        gufsa: {
+          given: [
+            '$m = 1200\\text{ kg}$, $v_i = 15\\text{ m/s}$, $v_f = 0\\text{ m/s}$',
+            'Rigid wall: $\\Delta t_1 = 0.05\\text{ s}$; Cushioned barrier: $\\Delta t_2 = 0.60\\text{ s}$',
+          ],
+          unknown: 'Average impact forces $F_1$ and $F_2$ and how they compare',
+          formula: '$F = \\frac{\\Delta p}{\\Delta t} = \\frac{m(v_f - v_i)}{\\Delta t}$',
+          solution: [
+            '$|\\Delta p| = (1200\\text{ kg})(15\\text{ m/s}) = 18000\\text{ kg}\\cdot\\text{m/s}$',
+            '$F_1 = \\frac{18000\\text{ N}\\cdot\\text{s}}{0.05\\text{ s}} = 360000\\text{ N} = 360\\text{ kN}$',
+            '$F_2 = \\frac{18000\\text{ N}\\cdot\\text{s}}{0.60\\text{ s}} = 30000\\text{ N} = 30\\text{ kN}$',
+            'Ratio: $\\frac{360\\text{ kN}}{30\\text{ kN}} = 12$',
+          ],
+          answer: `The cushioned barrier reduces average impact force by a factor of $${factor}$ (from $360\\text{ kN}$ down to $30\\text{ kN}$).`,
+        },
         takeaway: 'Impulse is the same in both crashes, but increasing time by a factor of 12 reduces destructive force by a factor of 12.',
         isConceptual: false,
       };
@@ -1247,6 +1559,19 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Since $J = F\\Delta t$ and $\\Delta p = mv_f - mv_i$, we obtain $J = \\Delta p$.',
           },
         ],
+        gufsa: {
+          given: [
+            'Newton\'s Second Law: $F = ma$',
+            'Definition of acceleration: $a = \\frac{v_f - v_i}{\\Delta t}$',
+          ],
+          unknown: 'Equation expressing the Impulse-Momentum Theorem',
+          formula: '$F = m\\left(\\frac{v_f - v_i}{\\Delta t}\\right)$',
+          solution: [
+            'Multiply both sides by $\\Delta t$: $F\\Delta t = m(v_f - v_i)$',
+            'Distribute $m$: $F\\Delta t = mv_f - mv_i$, which is $J = \\Delta p$',
+          ],
+          answer: '$F\\Delta t = mv_f - mv_i$ (or $J = \\Delta p$)',
+        },
         takeaway: 'Impulse applied to an object always equals the resulting change in that object\'s momentum.',
         isConceptual: true,
       };
@@ -1301,6 +1626,20 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: `$v_{\\text{board}} = -\\frac{${massPerson * vPerson}}{${massBoard}} = -${vBoard}\\text{ m/s}$ (directed backward).`,
           },
         ],
+        gufsa: {
+          given: [
+            `$m_1 = ${massPerson}\\text{ kg}$ (student), $v_1 = +${vPerson}\\text{ m/s}$ (forward)`,
+            `$m_2 = ${massBoard}\\text{ kg}$ (skateboard), $p_{\\text{initial}} = 0\\text{ kg}\\cdot\\text{m/s}$`,
+          ],
+          unknown: '$v_2 = ?\\text{ (m/s and direction)}$ (skateboard recoil velocity)',
+          formula: '$m_1 v_1 + m_2 v_2 = 0 \\implies v_2 = -\\frac{m_1 v_1}{m_2}$',
+          solution: [
+            `$v_2 = -\\frac{(${massPerson}\\text{ kg})(+${vPerson}\\text{ m/s})}{${massBoard}\\text{ kg}}$`,
+            `$v_2 = -\\frac{${massPerson * vPerson}}{${massBoard}} = -${vBoard}\\text{ m/s}$`,
+            'The negative sign shows the skateboard recoils backward.',
+          ],
+          answer: `$${vBoard}\\text{ m/s}$ backward`,
+        },
         takeaway: 'Because the skateboard has much less mass than the human, it recoils backward with a significantly higher speed to conserve total momentum!',
         isConceptual: false,
       };
@@ -1340,8 +1679,215 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
             detail: 'Area of rectangle = $\\text{height} \\times \\text{width} = F \\times \\Delta t = J$. For varying forces, area beneath curve gives the total impulse.',
           },
         ],
+        gufsa: {
+          given: [
+            'Vertical axis (y-axis) represents Force ($F$) in Newtons',
+            'Horizontal axis (x-axis) represents Time ($t$) in seconds',
+          ],
+          unknown: 'Geometric property of the $F\\text{-}t$ graph equal to impulse ($J$)',
+          formula: '$J = F\\Delta t$',
+          solution: [
+            'Multiplying height ($F$) by width ($\\Delta t$) gives the area under the graph.',
+            'Therefore, the area beneath a Force vs. Time curve equals the total impulse.',
+          ],
+          answer: 'The area under the Force vs. Time ($F\\text{ vs }t$) graph represents impulse.',
+        },
         takeaway: 'Area under an $F\\text{-}t$ curve gives impulse $J$. For a triangle-shaped pulse, $\\text{Area} = \\frac{1}{2} F_{\\text{peak}} \\Delta t$.',
         isConceptual: true,
+      };
+    },
+  },
+  // Level 4: Momentum - Opposite-direction velocity calculation (sign convention)
+  {
+    topicId: 'momentum',
+    difficulty: 4,
+    generator: () => {
+      const m = randomChoice([4, 5, 8, 10]);
+      const speed = randomChoice([3, 4, 6, 7]);
+      const pMag = m * speed;
+      const correct = `$-${speed}\\text{ m/s}$ (or $${speed}\\text{ m/s}$ west)`;
+      const { options, correctAnswerId } = makeOptions(correct, [
+        `$+${speed}\\text{ m/s}$ east`,
+        `$-${pMag * m}\\text{ m/s}$`,
+        `$-${roundDec(m / pMag, 2)}\\text{ m/s}$`,
+      ]);
+
+      return {
+        id: `mom-l4-neg-vel-${Date.now()}-${Math.random()}`,
+        topicId: 'momentum',
+        difficulty: 4,
+        title: 'Velocity & Sign Convention from Momentum',
+        problemStatement: `Taking east as the positive direction, a $${m}\\text{ kg}$ cart has a momentum of $-${pMag}\\text{ kg}\\cdot\\text{m/s}$. What is the velocity of the cart?`,
+        options,
+        correctAnswerId,
+        formulaUsed: 'v = \\frac{p}{m}',
+        formulaReason: 'Momentum is a vector ($p = mv$). Rearrange to $v = \\frac{p}{m}$ and keep the negative sign to indicate westward motion.',
+        givenValues: [
+          { symbol: 'm', value: `${m}`, unit: 'kg' },
+          { symbol: 'p', value: `-${pMag}`, unit: 'kg·m/s' },
+        ],
+        steps: [
+          {
+            label: 'Step 1: Rearrange $p = mv$',
+            detail: '$v = \\frac{p}{m}$',
+          },
+          {
+            label: 'Step 2: Substitute Given Values with Sign',
+            detail: `$v = \\frac{-${pMag}\\text{ kg}\\cdot\\text{m/s}}{${m}\\text{ kg}} = -${speed}\\text{ m/s}$`,
+          },
+          {
+            label: 'Step 3: Interpret Direction',
+            detail: `Since east is positive, $-${speed}\\text{ m/s}$ means $${speed}\\text{ m/s}$ west.`,
+          },
+        ],
+        gufsa: {
+          given: [
+            `$m = ${m}\\text{ kg}$`,
+            `$p = -${pMag}\\text{ kg}\\cdot\\text{m/s}$ (east is positive)`,
+          ],
+          unknown: '$v = ?\\text{ (m/s and direction)}$',
+          formula: '$p = mv \\implies v = \\frac{p}{m}$',
+          solution: [
+            `$v = \\frac{-${pMag}\\text{ kg}\\cdot\\text{m/s}}{${m}\\text{ kg}}$`,
+            `$v = -${speed}\\text{ m/s}$ (west)`,
+          ],
+          answer: `$-${speed}\\text{ m/s}$ (or $${speed}\\text{ m/s}$ west)`,
+        },
+        takeaway: 'A negative momentum simply indicates motion in the opposite (westward/backward) direction.',
+        isConceptual: false,
+      };
+    },
+  },
+
+  // Level 5: Momentum - Total momentum of a two-object system moving in opposite directions
+  {
+    topicId: 'momentum',
+    difficulty: 5,
+    generator: () => {
+      const m1 = randomChoice([4, 6]);
+      const v1 = randomChoice([5, 6]);
+      const m2 = randomChoice([3, 5]);
+      const v2Mag = randomChoice([2, 4]);
+      const p1 = m1 * v1;
+      const p2 = -m2 * v2Mag;
+      const pTotal = p1 + p2;
+      const dir = pTotal >= 0 ? 'east' : 'west';
+      const correct = `$${Math.abs(pTotal)}\\text{ kg}\\cdot\\text{m/s}$ ${dir}`;
+      const wrongSum = p1 + m2 * v2Mag;
+      const { options, correctAnswerId } = makeOptions(correct, [
+        `$${wrongSum}\\text{ kg}\\cdot\\text{m/s}$ east`,
+        `$${Math.abs(v1 - v2Mag) * (m1 + m2)}\\text{ kg}\\cdot\\text{m/s}$ east`,
+        `$${Math.abs(p1)}\\text{ kg}\\cdot\\text{m/s}$ west`,
+      ]);
+
+      return {
+        id: `mom-l5-system-${Date.now()}-${Math.random()}`,
+        topicId: 'momentum',
+        difficulty: 5,
+        title: 'Total Momentum of Opposing Objects',
+        problemStatement: `Object A ($${m1}\\text{ kg}$) moves east at $+${v1}\\text{ m/s}$, while Object B ($${m2}\\text{ kg}$) moves west at $-${v2Mag}\\text{ m/s}$. What is the total momentum of the two-object system?`,
+        options,
+        correctAnswerId,
+        formulaUsed: 'p_{\\text{total}} = m_1 v_1 + m_2 v_2',
+        formulaReason: 'Momentum is a vector quantity, so calculate each object\'s momentum with its proper direction sign (+ east, - west) before adding.',
+        givenValues: [
+          { symbol: 'm_1', value: `${m1}`, unit: 'kg' },
+          { symbol: 'v_1', value: `+${v1}`, unit: 'm/s' },
+          { symbol: 'm_2', value: `${m2}`, unit: 'kg' },
+          { symbol: 'v_2', value: `-${v2Mag}`, unit: 'm/s' },
+        ],
+        steps: [
+          {
+            label: 'Step 1: Momentum of Object A',
+            detail: `$p_1 = (${m1}\\text{ kg})(+${v1}\\text{ m/s}) = +${p1}\\text{ kg}\\cdot\\text{m/s}$`,
+          },
+          {
+            label: 'Step 2: Momentum of Object B',
+            detail: `$p_2 = (${m2}\\text{ kg})(-${v2Mag}\\text{ m/s}) = ${p2}\\text{ kg}\\cdot\\text{m/s}$`,
+          },
+          {
+            label: 'Step 3: Add Vector Momentums',
+            detail: `$p_{\\text{total}} = ${p1} + (${p2}) = ${pTotal}\\text{ kg}\\cdot\\text{m/s}$ (${dir})`,
+          },
+        ],
+        gufsa: {
+          given: [
+            `$m_1 = ${m1}\\text{ kg}$, $v_1 = +${v1}\\text{ m/s}$ (east)`,
+            `$m_2 = ${m2}\\text{ kg}$, $v_2 = -${v2Mag}\\text{ m/s}$ (west)`,
+          ],
+          unknown: '$p_{\\text{total}} = ?\\text{ (kg}\\cdot\\text{m/s and direction)}$',
+          formula: '$p_{\\text{total}} = m_1 v_1 + m_2 v_2$',
+          solution: [
+            `$p_1 = (${m1})(+${v1}) = +${p1}\\text{ kg}\\cdot\\text{m/s}$`,
+            `$p_2 = (${m2})(-${v2Mag}) = ${p2}\\text{ kg}\\cdot\\text{m/s}$`,
+            `$p_{\\text{total}} = ${p1} + (${p2}) = ${pTotal}\\text{ kg}\\cdot\\text{m/s}$`,
+          ],
+          answer: `$${Math.abs(pTotal)}\\text{ kg}\\cdot\\text{m/s}$ ${dir}`,
+        },
+        takeaway: 'Because momentum is a vector, opposing momentums partially cancel each other out when summed.',
+        isConceptual: false,
+      };
+    },
+  },
+
+  // Level 5: Impulse - Rearranging J = FΔt to find contact duration
+  {
+    topicId: 'impulse',
+    difficulty: 5,
+    generator: () => {
+      const impulse = randomChoice([18, 24, 36, 48]);
+      const force = randomChoice([120, 160, 240]);
+      const dt = roundDec(impulse / force, 3);
+      const correct = `$${dt}\\text{ s}$`;
+      const { options, correctAnswerId } = makeOptions(correct, [
+        `$${roundDec(force / impulse, 2)}\\text{ s}$`,
+        `$${roundDec(impulse * force, 1)}\\text{ s}$`,
+        `$${roundDec(dt * 10, 2)}\\text{ s}$`,
+      ]);
+
+      return {
+        id: `imp-l5-find-time-${Date.now()}-${Math.random()}`,
+        topicId: 'impulse',
+        difficulty: 5,
+        title: 'Solving for Contact Duration from Impulse',
+        problemStatement: `A golf club exerts an average force of $${force}\\text{ N}$ on a golf ball, delivering an impulse of $${impulse}\\text{ N}\\cdot\\text{s}$. How long were the club and ball in contact?`,
+        options,
+        correctAnswerId,
+        formulaUsed: '\\Delta t = \\frac{J}{F}',
+        formulaReason: 'Rearrange the impulse formula $J = F\\Delta t$ to solve for contact time $\\Delta t$.',
+        givenValues: [
+          { symbol: 'F', value: `${force}`, unit: 'N' },
+          { symbol: 'J', value: `${impulse}`, unit: 'N·s' },
+        ],
+        steps: [
+          {
+            label: 'Step 1: Rearrange $J = F\\Delta t$',
+            detail: '$\\Delta t = \\frac{J}{F}$',
+          },
+          {
+            label: 'Step 2: Substitute Given Values',
+            detail: `$\\Delta t = \\frac{${impulse}\\text{ N}\\cdot\\text{s}}{${force}\\text{ N}}$`,
+          },
+          {
+            label: 'Step 3: Calculate Time Interval',
+            detail: `$\\Delta t = ${dt}\\text{ s}$`,
+          },
+        ],
+        gufsa: {
+          given: [
+            `$F = ${force}\\text{ N}$`,
+            `$J = ${impulse}\\text{ N}\\cdot\\text{s}$`,
+          ],
+          unknown: '$\\Delta t = ?\\text{ (s)}$',
+          formula: '$J = F\\Delta t \\implies \\Delta t = \\frac{J}{F}$',
+          solution: [
+            `$\\Delta t = \\frac{${impulse}\\text{ N}\\cdot\\text{s}}{${force}\\text{ N}}$`,
+            `$\\Delta t = ${dt}\\text{ s}$`,
+          ],
+          answer: `$\\Delta t = ${dt}\\text{ s}$`,
+        },
+        takeaway: 'Dividing impulse ($\text{N}\\cdot\text{s}$) by force ($\text{N}$) cancels Newtons and leaves seconds ($\text{s}$).',
+        isConceptual: false,
       };
     },
   },
@@ -1349,23 +1895,56 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
 
 /**
  * Generates a fresh question based on optional topic and difficulty filters.
+ * Strictly honors topicFilter whenever provided.
  */
 export function generateQuestion(
   topicFilter?: TopicId[],
-  difficultyFilter?: DifficultyLevel[]
+  difficultyFilter?: DifficultyLevel[],
+  preferredTopic?: TopicId,
+  preferredDifficulty?: DifficultyLevel
 ): Question {
-  let eligible = QUESTION_TEMPLATES;
+  let topicEligible = QUESTION_TEMPLATES;
 
   if (topicFilter && topicFilter.length > 0) {
-    eligible = eligible.filter((t) => topicFilter.includes(t.topicId));
+    topicEligible = topicEligible.filter((t) => topicFilter.includes(t.topicId));
   }
 
+  if (topicEligible.length === 0) {
+    topicEligible = QUESTION_TEMPLATES;
+  }
+
+  let eligible = topicEligible;
+
+  // Apply preferred topic when cycling sequentially
+  if (preferredTopic) {
+    const byPreferredTopic = eligible.filter((t) => t.topicId === preferredTopic);
+    if (byPreferredTopic.length > 0) {
+      eligible = byPreferredTopic;
+    }
+  }
+
+  // Apply difficulty filter within topic-eligible templates
   if (difficultyFilter && difficultyFilter.length > 0) {
-    eligible = eligible.filter((t) => difficultyFilter.includes(t.difficulty));
+    const byDifficulty = eligible.filter((t) => difficultyFilter.includes(t.difficulty));
+    if (byDifficulty.length > 0) {
+      eligible = byDifficulty;
+    } else {
+      // If preferredTopic didn't have that difficulty, try any selected topic that does
+      const anyTopicWithDifficulty = topicEligible.filter((t) =>
+        difficultyFilter.includes(t.difficulty)
+      );
+      if (anyTopicWithDifficulty.length > 0) {
+        eligible = anyTopicWithDifficulty;
+      }
+    }
   }
 
-  if (eligible.length === 0) {
-    eligible = QUESTION_TEMPLATES;
+  // Apply preferred difficulty when cycling sequentially
+  if (preferredDifficulty) {
+    const byPreferredDiff = eligible.filter((t) => t.difficulty === preferredDifficulty);
+    if (byPreferredDiff.length > 0) {
+      eligible = byPreferredDiff;
+    }
   }
 
   const chosenTemplate = randomChoice(eligible);

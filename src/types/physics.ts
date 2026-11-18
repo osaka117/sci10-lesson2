@@ -32,6 +32,14 @@ export interface QuestionStep {
   detail: string; // Formatted explanation with math
 }
 
+export interface GufsaBreakdown {
+  given: string[];
+  unknown: string;
+  formula: string;
+  solution: string[];
+  answer: string;
+}
+
 export interface Question {
   id: string;
   topicId: TopicId;
@@ -44,6 +52,7 @@ export interface Question {
   formulaReason: string;
   givenValues: { symbol: string; value: string; unit: string }[];
   steps: QuestionStep[];
+  gufsa: GufsaBreakdown;
   takeaway: string;
   isConceptual: boolean;
 }
